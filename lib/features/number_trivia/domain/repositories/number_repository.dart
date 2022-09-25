@@ -7,6 +7,6 @@ abstract class NumberTriviaRepository{
   //these methods are set to return either a NumberTrivia or a Failure
   //and from this contract every concrete implementation must have these two methods
   Future<Either<Failure, NumberTrivia?>>? getConcreteNumberTrivia(int? number);
-  Future<Either<Failure, NumberTrivia>>? getRandomNumberTrivia();
+  Future<Either<Failure, NumberTrivia?>>? getRandomNumberTrivia();
 }
 
