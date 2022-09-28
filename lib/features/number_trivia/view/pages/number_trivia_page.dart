@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
+import '../../domain/entities/number_trivia.dart';
+import '../widgets/loading_widget.dart';
+import '../widgets/message_display.dart';
+import '../widgets/trivia_control.dart';
+import '../widgets/trivia_display.dart';
 
 class NumberTriviaPage extends StatelessWidget {
   const NumberTriviaPage({Key? key}) : super(key: key);
@@ -13,7 +18,7 @@ class NumberTriviaPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Number Trivia'),
       ),
-      body: buildBody(context),
+      body: SingleChildScrollView(child: buildBody(context)),
     );
   }
 
@@ -31,54 +36,28 @@ class NumberTriviaPage extends StatelessWidget {
                 return const MessageDisplay(message: 'Start Searching',);
               }else if(state is ErrorState){
                 return MessageDisplay(message: state.message);
+              }else if(state is Loading){
+                return const LoadingWidget();
+              }else if(state is Loaded){
+                return TriviaDisplay(numberTrivia: state.trivia);
+              }else{
+                return Container();
               }
-              return Container(
-                height: MediaQuery.of(context).size.height/3,
-                child: Placeholder(),
-              );
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Column(
-            children: [
-              Placeholder(fallbackHeight: 40,),
-              SizedBox(height: 10,),
-              Row(
-                children: [
-                  Expanded(child: Placeholder(fallbackHeight: 30,)),
-                  SizedBox(width: 10,),
-                  Expanded(child: Placeholder(fallbackHeight: 30,),)
-                ],
-              )
-            ],
-          )
+          const TriviaControl()
         ],
       ),
     );
   }
 }
 
-class MessageDisplay extends StatelessWidget {
-  final String message;
-  const MessageDisplay({
-    Key? key, required this.message,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height/3,
-      child: Center(
-        child: SingleChildScrollView(
-          child: Text(message,
-          style: const TextStyle(
-            fontSize: 25,
-          ),textAlign: TextAlign.center,),
-        ),
-      )
-      ,
-    );
-  }
-}
+
+
+
+
+
