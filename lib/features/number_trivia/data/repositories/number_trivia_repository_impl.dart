@@ -4,10 +4,11 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/entities/number_trivia.dart';
 import 'package:dartz/dartz.dart';
 import '../../domain/repositories/number_repository.dart';
+import '../models/number_trivia_model.dart';
 import '../providers/number_trivia_local_data_source.dart';
 import '../providers/number_trivia_remote_data_source.dart';
 
-typedef Future<NumberTrivia>? _ConcreteOrRandomChooser();
+typedef Future<NumberTriviaModel>? _ConcreteOrRandomChooser();
 
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   final NumberTriviaRemoteDataSource remoteDataSource;
