@@ -1,16 +1,16 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'features/number_trivia/view/pages/number_trivia_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
-  log('hi');
+
   await di.init();
-  log('check');
+
   runApp(const MyApp());
-  log('hello');
+
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Number Trivia',
       theme: ThemeData(
         primaryColor: Colors.green.shade800,

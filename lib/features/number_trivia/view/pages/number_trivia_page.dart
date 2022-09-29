@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clean_architecture_tdd_course/features/number_trivia/view/bloc/number_trivia_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +18,13 @@ class NumberTriviaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Number Trivia'),
       ),
-      body: SingleChildScrollView(child: buildBody(context)),
+      body: SingleChildScrollView(child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: buildBody(context),
+      )),
     );
   }
 

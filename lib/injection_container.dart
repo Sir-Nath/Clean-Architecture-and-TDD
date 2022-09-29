@@ -17,7 +17,7 @@ import 'package:http/http.dart' as http;
 final sl = GetIt.instance;
 
 Future<void> init() async{
-  log('hi 2');
+
   //Features - Number Trivia
   //Bloc
   sl.registerFactory(
@@ -28,19 +28,19 @@ Future<void> init() async{
     ),
   );
   //uses cases
-  log('hi 3');
+
   sl.registerLazySingleton(
     () => GetConcreteNumberTrivia(
       repository: sl(),
     ),
   );
-  log('hi 4');
+
   sl.registerLazySingleton(
     () => GetRandomNumberTrivia(
       sl(),
     ),
   );
-  log('hi 5');
+
   //repository
   sl.registerLazySingleton<NumberTriviaRepository>(
     () => NumberTriviaRepositoryImpl(
@@ -49,20 +49,19 @@ Future<void> init() async{
       networkInfo: sl(),
     ),
   );
-  log('hi 6');
   //Data souces
   sl.registerLazySingleton<NumberTriviaRemoteDataSource>(
     () => NumberTriviaRemoteDataSourceImpl(
       client: sl(),
     ),
   );
-  log('hi 7');
+
   sl.registerLazySingleton<NumberTriviaLocalDataSource>(
     () => NumberTriviaLocalDataSourceImpl(
       sharedPreferences: sl(),
     ),
   );
-  log('hi 8');
+
   //Core
   sl.registerLazySingleton(() => InputConverter());
   sl.registerLazySingleton<NetworkInfo>(
@@ -71,13 +70,8 @@ Future<void> init() async{
     ),
   );
   //External
-  log('hi9');
   final sharePreferences = await SharedPreferences.getInstance();
-  log('hi 10');
   sl.registerLazySingleton(()  => sharePreferences);
-  log('hi 10');
   sl.registerLazySingleton(() => http.Client());
-  log('hi 10');
   sl.registerLazySingleton(() => DataConnectionChecker());
-  log('hi 10');
 }

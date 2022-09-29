@@ -15,10 +15,10 @@ class Loading extends NumberTriviaState {
 }
 
 class Loaded extends NumberTriviaState {
-  final NumberTrivia trivia;
+  final NumberTrivia? trivia;
   const Loaded({required this.trivia});
   @override
-  List<Object> get props => [trivia];
+  List<Object> get props => [trivia!];
 }
 
 class ErrorState extends NumberTriviaState {
